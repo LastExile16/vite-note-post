@@ -1,10 +1,12 @@
-import { useState } from 'react'
-import './App.css'
+import PostsList from './components/PostsList'
 
 function App() {
 
   return (
-    <h1>Hello World!</h1>
+    <div>
+        <h1>Welcome to Wall-Post!</h1>
+        <PostsList />
+    </div>
   )
 }
 
