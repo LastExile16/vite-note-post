@@ -17,11 +17,17 @@ function PostsList({isPosting, onStopPosting}) {
     setEnteredAuthor(event.target.value);
   }
 
+  function modalSubmitHandler(event) {
+    console.log("Submitting the form!")
+  }
+
   let modalContent;
   modalContent = isPosting? (<Modal onClose={onStopPosting}>
         <NewPost
           onBodyChange={bodyChangeHandler}
           onAuthorChange={authorChangeHandler}
+          onCancel={onStopPosting}
+          onSubmit={modalSubmitHandler}
         />
       </Modal>): ""; 
   return (
