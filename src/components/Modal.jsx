@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import classes from './Modal.module.css';
 
-function Modal({ children }) {
+function Modal({ children, onClose }) {
+
   return (
     <>
-      <div className={classes.backdrop} />
+      <div className={classes.backdrop} onClick={onClose}/>
       <dialog open className={classes.modal}>
         {children}
       </dialog>
