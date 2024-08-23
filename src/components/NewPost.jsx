@@ -1,14 +1,18 @@
 import classes from './NewPost.module.css'
 
-function NewPost({onCancel}) {
+function NewPost({onCancel, onAddPost}) {
     
     function handleSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
         const bodyText = formData.get('bodyText');
         const authorName = formData.get('authorName');
-        console.log(bodyText)
-        console.log(authorName)
+        const postData = {
+            body: bodyText,
+            author: authorName
+        }
+        onAddPost(postData)
+        onCancel()
     }
     return (
         <>

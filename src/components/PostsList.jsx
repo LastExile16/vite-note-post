@@ -1,22 +1,34 @@
-import Post from './Post';
-import NewPost from './NewPost';
-import Modal from './Modal';
-import classes from './PostsList.module.css';
+import { useState } from "react";
+import Post from "./Post";
+import NewPost from "./NewPost";
+import Modal from "./Modal";
+import classes from "./PostsList.module.css";
 
-function PostsList({isPosting, onStopPosting}) {
+function PostsList({ isPosting, onStopPosting }) {
+  const [posts, setPosts] = useState([]);
+
+  function addPostHandler(postData) {
+    // if new state depends on prev state, then use arrow function
+    setPosts((existingPosts) => [postData, ...existingPosts]);
+    console.log(posts);
+  }
 
   let modalContent;
-  modalContent = isPosting? (<Modal onClose={onStopPosting}>
-        <NewPost
-          onCancel={onStopPosting}
-        />
-      </Modal>): ""; 
+  modalContent = isPosting ? (
+    <Modal onClose={onStopPosting}>
+      <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
+    </Modal>
+  ) : (
+    ""
+  );
+
   return (
     <>
       {modalContent}
       <ul className={classes.posts}>
-        <Post />
-        <Post author="Manuel" body="Check out the full course!" />
+        {posts.map((post) => (
+          <Post key={post.body} author={post.author} body={post.body} />
+        ))}
       </ul>
     </>
   );
