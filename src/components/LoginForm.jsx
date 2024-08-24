@@ -20,13 +20,14 @@ const PhoneInput = () => {
   );
 };
 
-function LoginForm({ onCancel }) {
+function LoginForm({ onCancel, onLogin }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     for (let [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);
     }
+    onLogin(true)
   };
 
   return (

@@ -4,7 +4,7 @@ import NewPost from "./NewPost";
 import Modal from "./Modal";
 import classes from "./PostsList.module.css";
 
-function PostsList({ isPosting, onStopPosting }) {
+function PostsList({ loginStatus, isPosting, onStopPosting }) {
   const [posts, setPosts] = useState([]);
 
   function addPostHandler(postData) {
@@ -13,13 +13,14 @@ function PostsList({ isPosting, onStopPosting }) {
   }
 
   let modalContent;
-  modalContent = isPosting ? (
-    <Modal onClose={onStopPosting}>
-      <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
-    </Modal>
-  ) : (
-    ""
-  );
+  modalContent =
+    loginStatus && isPosting ? (
+      <Modal onClose={onStopPosting}>
+        <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
+      </Modal>
+    ) : (
+      ""
+    );
 
   return (
     <>
