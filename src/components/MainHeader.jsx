@@ -1,8 +1,11 @@
-import { MdPostAdd, MdMessage } from 'react-icons/md';
+import { MdPostAdd, MdMessage, MdLogin } from 'react-icons/md';
 
 import classes from './MainHeader.module.css';
+import { useState } from 'react';
 
-function MainHeader({ onCreatePost }) {
+function MainHeader({ onCreatePost, onLogin }) {
+  const [loggedIn, setLoggedIn] = useState(false);
+  
   return (
     <header className={classes.header}>
       <h1 className={classes.logo}>
@@ -15,6 +18,12 @@ function MainHeader({ onCreatePost }) {
           New Post
         </button>
       </p>
+      {!loggedIn && <p>
+        <button className={classes.button} onClick={onLogin}>
+          <MdLogin size={18} />
+          Login
+        </button>
+      </p>}
     </header>
   );
 }

@@ -10,7 +10,6 @@ function PostsList({ isPosting, onStopPosting }) {
   function addPostHandler(postData) {
     // if new state depends on prev state, then use arrow function
     setPosts((existingPosts) => [postData, ...existingPosts]);
-    console.log(posts);
   }
 
   let modalContent;
